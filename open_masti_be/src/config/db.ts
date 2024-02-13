@@ -5,7 +5,7 @@ console.log("NODE_ENV", String(NODE_ENV));
 
 const mongoURI: string =
 	String(NODE_ENV) == "PROD"
-		? "mongodb://127.0.0.1:27017/open_masti"
+		? "mongodb://admin:proton%402030@43.205.230.150:27017/?authMechanism=DEFAULT"
 		: String(NODE_ENV) == "DEV"
 		? "mongodb://127.0.0.1:27017/open_masti"
 		: String(NODE_ENV) == "LOCAL"
