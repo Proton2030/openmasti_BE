@@ -1,1 +1,1 @@
-export const NODE_ENV: "PROD" | "DEV" | "LOCAL" = "PROD";
+export const NODE_ENV: "PROD" | "DEV" | "LOCAL" = "LOCAL";

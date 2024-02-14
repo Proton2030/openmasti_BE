@@ -16,7 +16,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const config_1 = require("./config");
 console.log("NODE_ENV", String(config_1.NODE_ENV));
 const mongoURI = String(config_1.NODE_ENV) == "PROD"
-    ? "mongodb://admin:proton%402030@43.205.230.150:27017/?authMechanism=DEFAULT"
+    ? "mongodb://admin:proton%402030@127.0.0.1:27017/?authMechanism=DEFAULT"
     : String(config_1.NODE_ENV) == "DEV"
         ? "mongodb://127.0.0.1:27017/open_masti"
         : String(config_1.NODE_ENV) == "LOCAL"

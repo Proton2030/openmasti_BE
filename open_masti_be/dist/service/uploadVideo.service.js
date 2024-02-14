@@ -17,7 +17,7 @@ const fluent_ffmpeg_1 = __importDefault(require("fluent-ffmpeg"));
 const path_1 = __importDefault(require("path"));
 const promises_1 = __importDefault(require("fs/promises"));
 const aws_config_1 = require("../config/aws.config");
-const outputDirectory = '/Users/anikdutta/Documents/proton/open_masti/open_masti_be/src/tmp/output';
+const outputDirectory = '/tmp/output';
 const uploadVideoService = (videoBuffer, videoName, videoDetails) => __awaiter(void 0, void 0, void 0, function* () {
     const timestamp = Date.now();
     const outputDirectoryPath = path_1.default.join(outputDirectory, `playlist_${timestamp}`);

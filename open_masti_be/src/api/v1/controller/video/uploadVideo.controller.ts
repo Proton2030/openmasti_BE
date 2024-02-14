@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { uploadVideoService } from "../../../service/uploadVideo.service";
-import { IVideo } from "../../../@types/video.types";
-import { MESSAGE } from "../../../constants/message";
-import videoModel from "../../../models/video.model";
-import { uploadThumbnailService } from "../../../service/uploadThumnail.service";
+import { uploadVideoService } from "../../../../service/uploadVideo.service";
+import { IVideo } from "../../../../@types/video.types";
+import { MESSAGE } from "../../../../constants/message";
+import videoModel from "../../../../models/video.model";
+import { uploadThumbnailService } from "../../../../service/uploadThumnail.service";
 
 export const uploadVideo = async(req:Request,res:Response)=>{
     if (!req.files || !('video' in req.files) || !('thumbnail' in req.files)) {
