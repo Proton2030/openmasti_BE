@@ -3,6 +3,9 @@ import express, { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 const app = express();
 
+const serverTimeoutInMilliseconds = 60 * 60 * 1000; // 60 minutes
+app.set('server.timeout', serverTimeoutInMilliseconds);
+
 app.use((req: Request, res: Response, next: NextFunction) => {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, token");

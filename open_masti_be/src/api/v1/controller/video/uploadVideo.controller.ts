@@ -31,7 +31,7 @@ export const uploadVideo = async(req:Request,res:Response)=>{
             thumbnail_url:thumbnailUrl
         }
         await new videoModel(payload).save();
-        return res.status(200).json({
+        res.status(200).json({
             message: MESSAGE.post.succ,
             result:payload
         });

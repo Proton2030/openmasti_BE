@@ -2,6 +2,7 @@ import express from "express";
 import { uploadVideo } from "../../controller/video/uploadVideo.controller";
 import { upload } from "../../../../middleware/multer.middleware";
 import { getVideoList } from "../../controller/video/getVideo.controller";
+import { setTimeout } from "timers/promises";
 
 const router = express.Router();
 

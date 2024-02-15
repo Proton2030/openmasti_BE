@@ -33,6 +33,7 @@ export const uploadVideoService = async (videoBuffer: Buffer, videoName: string,
     });
 
     try {
+        await fs.unlink(inputFilePath);
         const files = await fs.readdir(outputDirectoryPath);
         await Promise.all(files.map(async (file) => {
             const filePath = path.join(outputDirectoryPath, file);
@@ -49,8 +50,7 @@ export const uploadVideoService = async (videoBuffer: Buffer, videoName: string,
         const s3Url = `https://${bucketName}.s3.amazonaws.com/${videoName + '_' + timestamp}/playlist_${timestamp}/playlist.m3u8`;
         return s3Url;
     }
-     finally {
-        await fs.unlink(inputFilePath); // Delete the temporary input file
+     finally { // Delete the temporary input file
         await fs.rmdir(outputDirectoryPath, { recursive: true });
     }
 };
