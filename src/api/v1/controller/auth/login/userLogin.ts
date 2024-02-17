@@ -3,18 +3,18 @@ import UserModel from "../../../../../models/user.model";
 
 export const userLogin = async (req: Request, res: Response) => {
   try {
-    const existingUser = await UserModel.findOne({ $or: [ { email: req.body.email }, { ph_no: req.body.ph_no }] });
+    const { full_name, email } = req.body;
+    const existingUser = await UserModel.findOne({ email: email });
 
     if (existingUser) {
       return res.status(409).json({ message: 'User already exists' });
     }
 
     const newUser = new UserModel({
-      full_name: req.body.full_name,
-      ph_no: req.body.ph_no,
-      email: req.body.email,
-      is_Premium: req.body.is_Premium,
-      vaildity: req.body.vaildity
+      full_name: full_name,
+      email: email,
+      is_Premium: false,
+
     });
 
     await newUser.save();

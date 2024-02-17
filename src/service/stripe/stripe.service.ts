@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import mongoose from "mongoose";
-// import PlanModel from "../models/PlanModal";
+import PlanDeatilsModel from "../../models/PlanDetails.model";
 
 // checkout api
 const stripe = require('stripe')('sk_test_51ONCPxSCyxdPDARLxZDH1IIxXw79a1snd1rrptJ44tUpgHtdoOxtnlrvuyoGQlJbUr2kS184hvIMZqDwN5YNTp7100ERJdX1vt');

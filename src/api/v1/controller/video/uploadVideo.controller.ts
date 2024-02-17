@@ -4,6 +4,7 @@ import { IVideo } from "../../../../@types/video.types";
 import { MESSAGE } from "../../../../constants/message";
 import videoModel from "../../../../models/video.model";
 import { uploadThumbnailService } from "../../../../service/uploadThumnail.service";
+import { uploadTrailerService } from "../../../../service/uploadTrailer.service";
 
 export const uploadVideo = async(req:Request,res:Response)=>{
     if (!req.files || !('video' in req.files) || !('thumbnail' in req.files)) {
@@ -13,22 +14,26 @@ export const uploadVideo = async(req:Request,res:Response)=>{
     }
     const video = req.files['video'][0];
     const thumbnail = req.files['thumbnail'][0];
+    const trailer = req.files['trailer'][0];
 
     const videoBuffer = video.buffer;
     const thumbnailBuffer = thumbnail.buffer;
-
+    const trailerBuffer = trailer.buffer;
+    
     const {videoName,videoDetails} = req.body;
 
     try{
         const videoUrl = await uploadVideoService(videoBuffer,videoName,videoDetails);
         const thumbnailUrl = await uploadThumbnailService(thumbnailBuffer);
+        const trailerUrl = await uploadTrailerService(trailerBuffer);
 
         const payload:IVideo={
             video_title:videoName,
             video_details:videoDetails,
             is_premium_content:false,
             video_url:videoUrl,
-            thumbnail_url:thumbnailUrl
+            thumbnail_url:thumbnailUrl,
+            trailer_url:trailerUrl
         }
         await new videoModel(payload).save();
         res.status(200).json({

@@ -17,10 +17,10 @@ const io = require("socket.io")(httpServer, {
 	}
 });
 
-connectDb();
+// connectDb();
 
 const PORT =
-	String(NODE_ENV) === "PROD" || String(NODE_ENV) === "LOCAL" ? 4008 : String(NODE_ENV) === "DEV" ? 4009 : "";
+	String(NODE_ENV) === "LOCAL" || String(NODE_ENV) === "LOCAL" ? 4008 : String(NODE_ENV) === "DEV" ? 4009 : "";
 
 const server = httpServer.listen(PORT, () => {
 	// logger.log("info", `\x1b[33m \x1b[1m Server is running in ${NODE_ENV} mode on port ${PORT} \x1b[0m`);
