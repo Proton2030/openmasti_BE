@@ -1,5 +1,5 @@
+import PlanHistoryModel from "../../../../models/paymentHistory.model";
 import UserModel from "../../../../models/user.model";
-import PlanHistoryModel from "../../../../models/planHistory.model";
 import { Request, Response } from 'express';
 
 export const updateUserPremiumStatus = async (req: Request, res: Response) => {
@@ -16,7 +16,7 @@ export const updateUserPremiumStatus = async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    user.is_Premium = true;
+    user.is_premium = true;
     user.validity = 90;
 
     await user.save();
