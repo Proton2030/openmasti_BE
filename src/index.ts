@@ -17,7 +17,7 @@ const io = require("socket.io")(httpServer, {
 	}
 });
 
-// connectDb();
+connectDb();
 
 const PORT =
 	String(NODE_ENV) === "LOCAL" || String(NODE_ENV) === "LOCAL" ? 4008 : String(NODE_ENV) === "DEV" ? 4009 : "";

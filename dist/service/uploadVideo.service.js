@@ -17,7 +17,7 @@ const fluent_ffmpeg_1 = __importDefault(require("fluent-ffmpeg"));
 const path_1 = __importDefault(require("path"));
 const promises_1 = __importDefault(require("fs/promises"));
 const aws_config_1 = require("../config/aws.config");
-const outputDirectory = '/tmp/output';
+const outputDirectory = '/Users/anikdutta/Documents/proton/open_masti/open_masti_be/src/tmp/output';
 const uploadVideoService = (videoBuffer, videoName, videoDetails) => __awaiter(void 0, void 0, void 0, function* () {
     const timestamp = Date.now();
     const outputDirectoryPath = path_1.default.join(outputDirectory, `playlist_${timestamp}`);
@@ -41,6 +41,7 @@ const uploadVideoService = (videoBuffer, videoName, videoDetails) => __awaiter(v
             .run();
     });
     try {
+        yield promises_1.default.unlink(inputFilePath);
         const files = yield promises_1.default.readdir(outputDirectoryPath);
         yield Promise.all(files.map((file) => __awaiter(void 0, void 0, void 0, function* () {
             const filePath = path_1.default.join(outputDirectoryPath, file);
@@ -56,8 +57,7 @@ const uploadVideoService = (videoBuffer, videoName, videoDetails) => __awaiter(v
         const s3Url = `https://${aws_config_1.bucketName}.s3.amazonaws.com/${videoName + '_' + timestamp}/playlist_${timestamp}/playlist.m3u8`;
         return s3Url;
     }
-    finally {
-        yield promises_1.default.unlink(inputFilePath); // Delete the temporary input file
+    finally { // Delete the temporary input file
         yield promises_1.default.rmdir(outputDirectoryPath, { recursive: true });
     }
 });

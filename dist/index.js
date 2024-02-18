@@ -43,7 +43,7 @@ const io = require("socket.io")(httpServer, {
     }
 });
 (0, db_1.default)();
-const PORT = String(config_1.NODE_ENV) === "PROD" || String(config_1.NODE_ENV) === "LOCAL" ? 4008 : String(config_1.NODE_ENV) === "DEV" ? 4009 : "";
+const PORT = String(config_1.NODE_ENV) === "LOCAL" || String(config_1.NODE_ENV) === "LOCAL" ? 4008 : String(config_1.NODE_ENV) === "DEV" ? 4009 : "";
 const server = httpServer.listen(PORT, () => {
     // logger.log("info", `\x1b[33m \x1b[1m Server is running in ${NODE_ENV} mode on port ${PORT} \x1b[0m`);
     // logger.info({ a: 123, v: 456 });

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import UserModel from "../../../../../models/user.model";
+import { MESSAGE } from "../../../../../constants/message";
 
 export const userLogin = async (req: Request, res: Response) => {
   try {
@@ -7,21 +8,31 @@ export const userLogin = async (req: Request, res: Response) => {
     const existingUser = await UserModel.findOne({ email: email });
 
     if (existingUser) {
-      return res.status(409).json({ message: 'User already exists' });
+      return res.status(200).json({
+        message:MESSAGE.post.succ,
+        result:existingUser
+      });
     }
-
+    
     const newUser = new UserModel({
       full_name: full_name,
       email: email,
-      is_Premium: false,
-
+      is_Premium: false
     });
 
-    await newUser.save();
+    const reseponse = await newUser.save();
 
-    res.status(201).json(newUser);
+    return res.status(200).json({
+      message:MESSAGE.post.succ,
+      result:reseponse
+    });
   } catch (error) {
     console.error(error);
-    res.status(400).json({ message: 'Server error' });
+    return res.status(400).json(
+      {
+        message: MESSAGE.post.fail,
+        error 
+      }
+      );
   }
 };
